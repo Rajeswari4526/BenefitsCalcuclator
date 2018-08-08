@@ -5,6 +5,7 @@ const Dependent = props =>
     <div>
         <input placeholder='first Name' value = {props.firstName} onChange = {e => {props.onChange({index: props.index, property: 'firstName', value: e.target.value}) }} />
         <input placeholder='last Name' value = {props.lastName} onChange = {e => {props.onChange({index: props.index, property: 'lastName', value: e.target.value}) }} />
+        <input value = {props.cost} />
         <button onClick = {props.onDelete} name='delete' value={props.index}>Delete</button>    
     </div>;
 Dependent.propTypes = {
@@ -12,6 +13,7 @@ Dependent.propTypes = {
     lastName: PropTypes.string,
     onChange: PropTypes.func,
     index: PropTypes.int,
-    onDelete: PropTypes.func
+    onDelete: PropTypes.func,
+    cost: PropTypes.number
 }
 export default Dependent;

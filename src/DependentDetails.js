@@ -17,13 +17,16 @@ export default class DependentDetails extends React.Component {
         const {dependents} = Object.assign({}, this.state);
         dependents.push({
             firstName: '',
-            lastName: ''
+            lastName: '',
+            cost: 0
         });
         this.setState({dependents});
     }
     onChange = ({index, property, value}) => {
-        const {dependents} = Object.assign({}, this.state);
+        const {dependents} = Object.assign({}, this.state);        
         dependents[index][property] = value;
+        const {firstName} = dependents[index];
+        dependents[index]['cost'] = firstName ? (firstName[0] === 'A' ? 450 : 500) : 0;
         this.setState({dependents});
     }
     render () {
