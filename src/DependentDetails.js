@@ -31,15 +31,34 @@ export default class DependentDetails extends React.Component {
     }
     render () {
        const { classes } = this.props  || {};
+       let totalDeductable = this.props.empDeductable;
         return (            
             <React.Fragment>
                 <React.Fragment>
                     Dependent Details
                 </React.Fragment>
-                {
-                    this.state.dependents.map((dependent,index) => <Dependent {...dependent} index = {index} onDelete={this.onDelete} onChange = {this.onChange} />)
+                {                     
+                    this.state.dependents.map((dependent,index) => {
+                        totalDeductable += dependent['cost']
+                        return <Dependent {...dependent} index = {index} onDelete={this.onDelete} onChange = {this.onChange} />
+                    } )
                 }
                 <button name='addDependents' onClick={this.onAdd}>Add</button>
+                <div>
+                    <b>Per Pay Period</b>
+                    <br />
+                    Salary: {this.props.empSalary}
+                    Deductable: {totalDeductable/26}
+                    Net Salay: {this.props.empSalary - (totalDeductable/26) }
+                </div>
+                <br />
+                <div>
+                    <b>Per Year</b>
+                    <br />
+                    Salary: {this.props.empSalary*26}
+                    Deductable: {totalDeductable}
+                    Net Salay: {(this.props.empSalary*26) - totalDeductable }
+                </div>
             </React.Fragment>
         );
     }

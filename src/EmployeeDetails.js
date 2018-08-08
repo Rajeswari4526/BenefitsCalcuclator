@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import DependentDetails from './DependentDetails';
 
 export default class EmployeeDetails extends React.Component {
     constructor(props){
@@ -10,7 +11,9 @@ export default class EmployeeDetails extends React.Component {
             empLastName: '',
             empEmail: '',
             empPhoneNum: '',
-            empAddress: ''
+            empAddress: '',
+            salary: 2000,
+            deductable: 1000
         }
     }
 
@@ -26,10 +29,8 @@ export default class EmployeeDetails extends React.Component {
                 Employee Details
                 <br/>
                 <TextField
-                required
-                id="required"
-                label="Required"
-                defaultValue='Employee Id' 
+                required                
+                label="Employee Id"                
                 name = 'empId'
                 value = {this.state.empId}                
                 margin="normal"                
@@ -57,6 +58,10 @@ export default class EmployeeDetails extends React.Component {
                 value = {this.state.empAddress} 
                 onChange = {this.change} />
                 <br/>
+                {
+                    this.state.empId 
+                    ? <DependentDetails empSalary = {this.state.salary} empDeductable = {this.state.deductable}/> : null
+                }                
             </div>
         );
     }
