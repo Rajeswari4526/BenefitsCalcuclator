@@ -21,8 +21,10 @@ export default class DependentDetails extends React.Component {
         });
         this.setState({dependents});
     }
-    onChange = (e) => {
-        
+    onChange = ({index, property, value}) => {
+        const {dependents} = Object.assign({}, this.state);
+        dependents[index][property] = value;
+        this.setState({dependents});
     }
     render () {
        const { classes } = this.props  || {};

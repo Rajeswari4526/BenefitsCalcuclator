@@ -1,21 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Dependent extends React.Component {
-    constructor () {
-        super();
-        this.state = {
-            firstName: '',
-            lastName: ''
-        }
-    }
-    render () {
-        const {firstName , lastName , index, onDelete, onChange} = this.props;
-        return (
-            <div>
-                <input placeholder='first Name' value = {this.state.firstName} onChange = {onChange} name = 'first name'/>
-                <input placeholder='last Name' value = {this.state.lastName} onChange = {onChange}/>
-                <button onClick = {onDelete} name='delete' value={index}>Delete</button>    
-            </div>
-        );
-    }
+const Dependent = props =>
+    <div>
+        <input placeholder='first Name' value = {props.firstName} onChange = {e => {props.onChange({index: props.index, property: 'firstName', value: e.target.value}) }} />
+        <input placeholder='last Name' value = {props.lastName} onChange = {e => {props.onChange({index: props.index, property: 'lastName', value: e.target.value}) }} />
+        <button onClick = {props.onDelete} name='delete' value={props.index}>Delete</button>    
+    </div>;
+Dependent.propTypes = {
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    onChange: PropTypes.func,
+    index: PropTypes.int,
+    onDelete: PropTypes.func
 }
+export default Dependent;
