@@ -1,64 +1,69 @@
 import React from 'react';
+import { Paper, TableRow, TableHead, TableCell, TableBody, Table } from '@material-ui/core';
 import Dependent from './Dependent';
+import './App.css';
+import BenefitsSummary from './BenefitsSummary';
 
 export default class DependentDetails extends React.Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            dependents : []
+            dependents: []
         }
     }
-    onDelete = (e) => {    
-        const {dependents} = Object.assign({}, this.state);
+    onDelete = (e) => {
+        const { dependents } = Object.assign({}, this.state);
         dependents.splice(e.target.value, 1);
-        this.setState({dependents});
+        this.setState({ dependents });
     }
-    onAdd = (e) => {
-        const {dependents} = Object.assign({}, this.state);
+    onAdd = () => {
+        const { dependents } = Object.assign({}, this.state);
         dependents.push({
-            firstName: '',
-            lastName: '',
+            name: '',
             cost: 0
         });
-        this.setState({dependents});
+        this.setState({ dependents });
     }
-    onChange = ({index, property, value}) => {
-        const {dependents} = Object.assign({}, this.state);        
-        dependents[index][property] = value;
-        const {firstName} = dependents[index];
-        dependents[index]['cost'] = firstName ? (firstName[0] === 'A' ? 450 : 500) : 0;
-        this.setState({dependents});
+    onChange = ({ index, value }) => {
+        const { dependents } = Object.assign({}, this.state);
+        dependents[index]['name'] = value;
+        const { name } = dependents[index];
+        dependents[index]['cost'] = name ? (name[0] === 'A' ? 450 : 500) : 0;
+        this.setState({ dependents });
     }
-    render () {
-       const { classes } = this.props  || {};
-       let totalDeductable = this.props.empDeductable;
-        return (            
+    render() {  
+        let totalDependentDeductable = 0;
+        return (
             <React.Fragment>
-                <React.Fragment>
-                    Dependent Details
-                </React.Fragment>
-                {                     
-                    this.state.dependents.map((dependent,index) => {
-                        totalDeductable += dependent['cost']
-                        return <Dependent {...dependent} index = {index} onDelete={this.onDelete} onChange = {this.onChange} />
-                    } )
-                }
-                <button name='addDependents' onClick={this.onAdd}>Add</button>
-                <div>
-                    <b>Per Pay Period</b>
-                    <br />
-                    Salary: {this.props.empSalary}
-                    Deductable: {totalDeductable/26}
-                    Net Salay: {this.props.empSalary - (totalDeductable/26) }
-                </div>
+                <Paper className="paper-size paper-padding">
+                <div className="App-text-align-left"><b>Dependent Details</b></div>
+                <Table  >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Dependent Name</TableCell>
+                            <TableCell numeric>Deductable (year)</TableCell>
+                            <TableCell ></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.state.dependents.map((dependent, index) => {
+                            totalDependentDeductable += dependent['cost']
+                            return (
+                                <Dependent {...dependent} index={index} onDelete={this.onDelete} onChange={this.onChange} />
+                            );
+                        })}
+                        <TableRow key="total">
+                            <TableCell>Total</TableCell>
+                            <TableCell numeric>{totalDependentDeductable}</TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
                 <br />
-                <div>
-                    <b>Per Year</b>
-                    <br />
-                    Salary: {this.props.empSalary*26}
-                    Deductable: {totalDeductable}
-                    Net Salay: {(this.props.empSalary*26) - totalDeductable }
-                </div>
+                <button name='addDependents' onClick={this.onAdd}>Add Dependents</button>
+                </Paper>
+                <br/>
+                <BenefitsSummary empSalary={this.props.empSalary} empDeductable={this.props.empDeductable} dependentsDeductable={totalDependentDeductable} />                
             </React.Fragment>
         );
     }
