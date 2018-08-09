@@ -12,9 +12,6 @@ export default class BenefitsCalcForm extends React.Component {
             dependentsDeductable: 0
         }
     }
-    onEmpSalaryChange = (newSalary) => {
-        this.setState({ empSalary: newSalary });
-    }
     onEmpDeductableChange = (newDeductable) => {
         this.setState({ empDeductable: newDeductable });
     }
@@ -28,7 +25,7 @@ export default class BenefitsCalcForm extends React.Component {
                     <h1 className="App-title">Paylocity Benefits Calculator</h1>
                 </header>
                 <br/>
-                <EmployeeDetails onEmpSalaryChange={this.onEmpSalaryChange} onEmpDeductableChange={this.onEmpDeductableChange} />
+                <EmployeeDetails onEmpDeductableChange={this.onEmpDeductableChange} />
                 {
                     (this.state.empDeductable > 0)
                     &&

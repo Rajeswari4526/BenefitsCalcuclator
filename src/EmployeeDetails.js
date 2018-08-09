@@ -1,5 +1,8 @@
 import React from 'react';
 import { TextField, Paper, TableRow, TableCell, TableBody, Table } from '@material-ui/core';
+import calculateDeductionFromName from './CalcUtil';
+
+const EMP_DEDUCTABLE = 1000;
 
 export default class EmployeeDetails extends React.Component {
     constructor(props) {
@@ -15,13 +18,12 @@ export default class EmployeeDetails extends React.Component {
 
     onChange = ({ target: { name, value } }) => {
         let newState = {};
-        name == 'empName' ? newState.deductable = (value ? (value[0] === 'A' ? 900 : 1000) : 0) : void 0;
+        name === 'empName' ? newState.deductable = calculateDeductionFromName({name:value,cost:EMP_DEDUCTABLE}) : void 0;
         newState[name] = value;
         this.setState(newState);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        prevState.salary !== this.state.salary ? this.props.onEmpSalaryChange(this.state.salary) : void 0;
         prevState.deductable !== this.state.deductable ? this.props.onEmpDeductableChange(this.state.deductable) : void 0;
     }
 
