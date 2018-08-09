@@ -46,7 +46,7 @@ export default class DependentDetails extends React.Component {
                     <Table  >
                         <TableHead>
                             <TableRow>
-                                <TableCell>Dependent Name</TableCell>
+                                <TableCell>Name</TableCell>
                                 <TableCell numeric>Deductable (year)</TableCell>
                                 <TableCell ></TableCell>
                             </TableRow>

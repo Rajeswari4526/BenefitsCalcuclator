@@ -32,26 +32,6 @@ export default class EmployeeDetails extends React.Component {
             <React.Fragment>
                 <Paper className="paper-size paper-padding">
                     <div className="App-text-align-left"><b>Employee Details</b></div>
-
-                    {/* <span className="left-margin">
-                        <TextField placeholder='Email' name='empEmail' value={this.state.empEmail} onChange={this.change} />
-                    </span>
-                    <br />
-                    <TextField placeholder='First Name' name='empFirstName' value={this.state.empFirstName} onChange={this.change} />
-                    <span className="left-margin">
-                        <TextField placeholder='Last Name' name='empLastName' value={this.state.empLastName} onChange={this.change} />
-                    </span>
-                    <br />
-                    <TextField placeholder='Phone num' name='empPhoneNum' value={this.state.empPhoneNum} onChange={this.change} />
-                    <span className="left-margin">
-                        <TextField placeholder='Address' name='empAddress' value={this.state.empAddress} onChange={this.change} />
-                    </span>
-                    <br />
-                    <TextField name='salary' value={this.state.salary} onChange={this.change} />
-                    <span className="left-margin">
-                        <TextField name='deductable' value={this.state.deductable} onChange={this.change} />
-                    </span>
-                    <br /> */}
                     <Table >
                         <TableBody style={{ boarder: 0 }}>
                             <TableRow style={{ boarder: 0 }}>
@@ -60,7 +40,7 @@ export default class EmployeeDetails extends React.Component {
                             </TableRow>
                             <TableRow>
                                 <TableCell >Name</TableCell>
-                                <TableCell ><TextField name='empName' value={this.state.empFirstName} onChange={this.onChange} /></TableCell>
+                                <TableCell ><TextField name='empName' value={this.state.empFirstName} onChange={this.onChange} pattern="[A-Za-z]{3}" /></TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell >Phone</TableCell>
