@@ -39,7 +39,7 @@ const BenefitsSummary = ({ empSalary, empDeductable, dependentsDeductable }) => 
                 </TableRow>
                 <TableRow>
                     <TableCell><b>Net Salary</b></TableCell>
-                    <TableCell numeric><b>{empSalary - ((empDeductable / PAYCHECKS_PER_YEAR).toFixed(2)) - ((dependentsDeductable / PAYCHECKS_PER_YEAR).toFixed(2))}</b></TableCell>
+                    <TableCell numeric><b>{(empSalary - ((empDeductable / PAYCHECKS_PER_YEAR).toFixed(2)) - ((dependentsDeductable / PAYCHECKS_PER_YEAR).toFixed(2))).toFixed(2)}</b></TableCell>
                     <TableCell numeric><b>{((empSalary * PAYCHECKS_PER_YEAR) - totalDeductable).toFixed(2)}</b></TableCell>
                 </TableRow>
             </TableBody>
