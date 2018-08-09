@@ -47,7 +47,7 @@ export default class EmployeeDetails extends React.Component {
                                 <TableCell ><TextField name='empPhoneNum' value={this.state.empPhoneNum} onChange={this.onChange} /></TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell >Salary</TableCell>
+                                <TableCell >Salary (per paycheck)</TableCell>
                                 <TableCell >{this.state.salary}</TableCell>
                             </TableRow>
                             <TableRow>
