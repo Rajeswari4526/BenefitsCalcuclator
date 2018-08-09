@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #2196f3;
-  height: 100px;
+  height: 90px;
   padding: 20px;
   color: white;
 }
@@ -45,10 +45,10 @@
 
 .paper-size {
   width: 600px;
-  margin-left: 400px;
+  margin-left: 340px;
   padding: 20px 0 20px 0;
 }
 
 .paper-padding {
   padding: 20px 50px 20px 50px;
-}
+} 

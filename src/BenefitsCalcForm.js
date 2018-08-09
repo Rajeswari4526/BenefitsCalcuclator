@@ -1,20 +1,44 @@
 import React from 'react';
 import EmployeeDetails from './EmployeeDetails';
-import './App.css';
+import DependentDetails from './DependentDetails';
+import BenefitsSummary from './BenefitsSummary';
 
 export default class BenefitsCalcForm extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            empSalary: 2000,
+            empDeductable: 0,
+            dependentsDeductable: 0
+        }
+    }
+    onEmpSalaryChange = (newSalary) => {
+        this.setState({ empSalary: newSalary });
+    }
+    onEmpDeductableChange = (newDeductable) => {
+        this.setState({ empDeductable: newDeductable });
+    }
+    onDependentDeductableChange = (newDeductable) => {
+        this.setState({ dependentsDeductable: newDeductable });
+    }
     render() {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 className="App-title">Benefits Calculator</h1>
+                    <h1 className="App-title">Paylocity Benefits Calculator</h1>
                 </header>
+                <br/>
+                <EmployeeDetails onEmpSalaryChange={this.onEmpSalaryChange} onEmpDeductableChange={this.onEmpDeductableChange} />
+                {
+                    (this.state.empDeductable > 0)
+                    &&
+                    <React.Fragment>
+                        <DependentDetails onDependentDeductableChange={this.onDependentDeductableChange} />
+                        <BenefitsSummary empSalary={this.state.empSalary} empDeductable={this.state.empDeductable} dependentsDeductable={this.state.dependentsDeductable} />
+                    </React.Fragment>
+                }
                 <p className="App-intro">
-                    Enter employee details and dependent details to caculate benefits package
-                </p>
-                <EmployeeDetails />
-                <p className="App-intro">
-                    *** Employee receives 26 pay checks per year.
+                    Note: Employee receives 26 pay checks per year.
                 </p>
             </div>
         );
