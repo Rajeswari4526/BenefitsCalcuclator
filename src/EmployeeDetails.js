@@ -3,6 +3,7 @@ import { TextField, Paper, TableRow, TableCell, TableBody, Table } from '@materi
 import calculateDeductionFromName from './CalcUtil';
 
 const EMP_DEDUCTABLE = 1000;
+const EMP_SALARY = 2000;
 
 export default class EmployeeDetails extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ export default class EmployeeDetails extends React.Component {
             empId: '',
             empName: '',
             empPhoneNum: '',
-            salary: 2000,
+            salary: EMP_SALARY,
             deductable: 0
         }
     }

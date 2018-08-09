@@ -3,11 +3,13 @@ import EmployeeDetails from './EmployeeDetails';
 import DependentDetails from './DependentDetails';
 import BenefitsSummary from './BenefitsSummary';
 
+const EMP_SALARY = 2000;
+
 export default class BenefitsCalcForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            empSalary: 2000,
+            empSalary: EMP_SALARY,
             empDeductable: 0,
             dependentsDeductable: 0
         }
